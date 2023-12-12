@@ -9,6 +9,35 @@
   </head>
 
   <body>
+    <header>
+      <nav>
+        <ul>
+          {{!-- <li id="to-left">
+            <p><a href="/"> Users - demo </a></p>
+          </li> --}}
+          
+          <li id="to-right">
+              {{#if userInSession}}
+                Hola {{userInSession.username}}!
+                <span> | </span>
+              {{/if}}
+              <a href="/signup">Registra't</a> 
+              {{#unless userInSession}}
+                <span> | </span>
+                <a href="/login">Identifica't</a> {{!-- !!! --}} 
+              {{/unless}}
+              <span> | </span>
+              <form id="logout-form" action="/logout" method="POST">
+                <button>Desconnecta't</button>
+              </form>
+              <span> | </span>
+              <a href="/userProfile">El teu perfil</a>
+              <span> | </span>
+              <a href="/">Home</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
     {{{body}}}
 
