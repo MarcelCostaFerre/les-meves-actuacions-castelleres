@@ -19,15 +19,9 @@ router.get('/', (req, res ) => {
 });
 
 router.get('/nova-actuacio', (req, res) => {
-    const { id } = req.params;
-    const { diada, address, date, castells, colles, photo, user } = req.body;
-    Actuacio.findById(id)
-    .populate({
-        path:'user',
-        select: 'username -_id'
-    })
-    .then((actuacioFromDB) => {
-       res.render('actuacions/nova-actuacio', {actuacioFromDB}) 
+    User.find()
+    .then((dbUsers) => {
+       res.render('actuacions/nova-actuacio', { dbUsers }) 
     })
 })
 

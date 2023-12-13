@@ -34,7 +34,7 @@
   <label for="user-select"> Creada per:
     <select name="user">
       <option disable selected value=""></option>
-      {{#each actuacioFromDB.user}}
+      {{#each dbUsers}}
         <option value="{{this._id}}"> {{this.username}} </option>
       {{/each}}
     </select>
