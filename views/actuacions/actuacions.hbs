@@ -1,0 +1,11 @@
+<h2>Actuacions</h2>
+
+<ul>
+  {{#each dbActuacions}}
+    <li>
+        {{this.diada}} by {{this.user.username}}
+        <br>
+        <a href="/actuacions/{{this._id}}">Detalls</a> | <a href="/actuacions/{{this._id}}/edit">Edita l'actuació</a>
+    </li>
+  {{/each}}
+</ul>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{appTitle}}</title>
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
@@ -21,19 +22,19 @@
                 Hola {{userInSession.username}}!
                 <span> | </span>
               {{/if}}
-              <a href="/signup">Registra't</a> 
+              <a href="/auth/signup">Registra't</a> 
               {{#unless userInSession}}
                 <span> | </span>
-                <a href="/login">Identifica't</a> {{!-- !!! --}} 
+                <a href="/auth/login">Identifica't</a>
               {{/unless}}
               <span> | </span>
               <form id="logout-form" action="/logout" method="POST">
                 <button>Desconnecta't</button>
               </form>
-              <span> | </span>
+              {{!-- <span> | </span>
               <a href="/userProfile">El teu perfil</a>
-              <span> | </span>
-              <a href="/">Home</a>
+              <span> | </span> --}}
+              <a href="/">Home</a> | <a href="/actuacions/nova-actuacio">Crea una actuació</a> | <a href="/actuacions">Actuacions</a>
           </li>
         </ul>
       </nav>

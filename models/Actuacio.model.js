@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the User model to whatever makes sense in this case
 const actuacioSchema = new Schema(
   {
     diada: {
@@ -26,12 +25,11 @@ const actuacioSchema = new Schema(
       },
     photo: {
         type: String,
-        default: '../public/images/castell-tipus.png',
+        default: '../public/images/castell-tipus.jpg',
       },
-    user: [{ type: Schema.Types.ObjectId, ref: "User" }]
+    user: { type: Schema.Types.ObjectId, ref: "User" }
   },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`
     timestamps: true,
   }
 );

@@ -1,0 +1,45 @@
+<h2>Crea una nova actuació</h2>
+
+<form action="/nova-actuacio" method="POST">
+  <label> Diada:
+    <textarea type="text" name="diada" rows="1" cols="30"> </textarea>
+  </label>
+  <br>
+
+  <label> Adreça:
+    <textarea type="text" name="address" rows="1" cols="30"></textarea>
+  </label>
+  <br>
+
+  <label> Data:
+    <input type="date" name="data">
+  </label>
+  <br>
+
+  <label> Castells:
+    <textarea type="text" name="castells" rows="1" cols="30"></textarea>
+  </label>
+  <br>
+
+  <label> Altres colles:
+    <textarea type="text" name="colles" rows="1" cols="30"></textarea>
+  </label>
+  <br>
+
+  <label> Foto:
+    <input type="image" src="../public/images/castell-tipus.jpg" alt="foto-castell">
+  </label>
+  <br>
+
+  <label for="user-select"> Creada per:
+    <select name="user">
+      <option disable selected value=""></option>
+      {{#each actuacioFromDB.user}}
+        <option value="{{this._id}}"> {{this.username}} </option>
+      {{/each}}
+    </select>
+  </label>
+  <br>
+
+  <button type="submit"> Crea una actuació </button>
+</form>
