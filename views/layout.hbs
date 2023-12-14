@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{appTitle}}</title>
-    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="/stylesheets/reset.css">
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
@@ -17,24 +17,26 @@
             <p><a href="/"> Users - demo </a></p>
           </li> --}}
           
-          <li id="to-right">
-              {{#if userInSession}}
-                Hola {{userInSession.username}}!
+          <li>
+              {{#if user}}
+                Hola {{user.username}}!
+                <span> | </span>
+                <a href="/actuacions/nova-actuacio">Crea una actuació</a>
                 <span> | </span>
               {{/if}}
               <a href="/auth/signup">Registra't</a> 
-              {{#unless userInSession}}
+              {{#unless user}}
                 <span> | </span>
                 <a href="/auth/login">Identifica't</a>
               {{/unless}}
-              <span> | </span>
-              <form id="logout-form" action="/logout" method="POST">
+              
+              <form id="logout-form" action="/auth/logout" method="POST">
                 <button>Desconnecta't</button>
               </form>
               {{!-- <span> | </span>
               <a href="/userProfile">El teu perfil</a>
               <span> | </span> --}}
-              <a href="/">Home</a> | <a href="/actuacions/nova-actuacio">Crea una actuació</a> | <a href="/actuacions">Actuacions</a>
+              <a href="/">Home</a> | <a href="/actuacions">Actuacions</a>
           </li>
         </ul>
       </nav>

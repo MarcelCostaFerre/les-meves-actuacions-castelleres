@@ -1,6 +1,6 @@
 <h2>Crea una nova actuació</h2>
 
-<form action="/nova-actuacio" method="POST">
+<form action="/actuacions/nova-actuacio" method="POST">
   <label> Diada:
     <textarea type="text" name="diada" rows="1" cols="30"> </textarea>
   </label>
@@ -12,7 +12,7 @@
   <br>
 
   <label> Data:
-    <input type="date" name="data">
+    <input type="date" name="date">
   </label>
   <br>
 
@@ -29,7 +29,14 @@
   <label> Foto:
     <input type="image" src="../public/images/castell-tipus.jpg" alt="foto-castell">
   </label>
+
   <br>
+
+  <label> User:
+    <input type="text" name="user" value="{{}}"/>
+  </label>
+
+  {{!-- <br>
 
   <label for="user-select"> Creada per:
     <select name="user">
@@ -38,7 +45,7 @@
         <option value="{{this._id}}"> {{this.username}} </option>
       {{/each}}
     </select>
-  </label>
+  </label> --}}
   <br>
 
   <button type="submit"> Crea una actuació </button>

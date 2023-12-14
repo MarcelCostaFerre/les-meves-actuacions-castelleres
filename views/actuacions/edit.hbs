@@ -1,6 +1,6 @@
 <h2>Edita una nova actuació</h2>
 
-<form action="/{{actuacioFromDB.id}}/edit" method="POST">
+<form action="/actuacions/{{actuacioFromDB.id}}/edit" method="POST">
   <label> Diada:
     <textarea type="text" name="diada" rows="1" cols="30"> {{actuacioFromDB.diada}} </textarea>
   </label>
@@ -12,7 +12,7 @@
   <br>
 
   <label> Data:
-    <input type="date" name="data" value="{{actuacioFromDB.address}}">
+    <input type="date" name="date" value="{{actuacioFromDB.date}}">
   </label>
   <br>
 
@@ -31,15 +31,17 @@
   </label>
   <br>
 
-  <label for="user-select"> Creada per:
+  {{!-- <label for="user-select"> Creada per:
     <select name="user">
       <option disable selected value=""></option>
       {{#each actuacioFromDB.user}}
         <option value="{{this._id}}"> {{this.username}} </option>
       {{/each}}
     </select>
-  </label>
+  </label> --}}
   <br>
 
   <button type="submit"> Save </button>
 </form>
+<br>
+<a href="/actuacions/{{actuacioFromDB._id}}">Back</a>

@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User.model");
 const Actuacio = require("../models/Actuacio.model");
-// const isLoggedOut = require("../middleware/isLoggedOut");
-// const isLoggedIn = require("../middleware/isLoggedIn");
+const isLoggedIn = require("../middleware/isLoggedIn");
+const isLoggedOut = require("../middleware/isLoggedOut");
 
 router.get('/', (req, res ) => {
     Actuacio.find()
@@ -18,17 +18,19 @@ router.get('/', (req, res ) => {
     
 });
 
-router.get('/nova-actuacio', (req, res) => {
-    User.find()
-    .then((dbUsers) => {
-       res.render('actuacions/nova-actuacio', { dbUsers }) 
-    })
-})
+router.get('/nova-actuacio', isLoggedIn, (req, res) => {
+    // User.find()
+    // .then((dbUsers) => {
+        
+    // })
+    res.render('actuacions/nova-actuacio')
+});
 
 router.post('/nova-actuacio', (req, res) => {
     const { diada, address, date, castells, colles, photo, user } = req.body;
     Actuacio.create({ diada, address, date, castells, colles, photo, user })
     .then( (novaActuacio) => {
+        
         // res.json(novaActuacio)
         res.redirect('/actuacions')
         })
@@ -47,9 +49,9 @@ router.get('/:id', (req, res) => {
         // res.json(actuacioFromDB);
         res.render('actuacions/detall-actuacio', { actuacioFromDB });
       });
-})
+});
 
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', isLoggedIn, (req, res) => {
     const { id } = req.params;
     const { diada, address, date, castells, colles, photo, user } = req.body;
     Actuacio.findById(id)
@@ -61,25 +63,27 @@ router.get('/:id/edit', (req, res) => {
        res.render('actuacions/edit', {actuacioFromDB}) 
     })
     
-})
+});
 
-router.post('/:id/edit', (req, res) => {
+router.post('/:id/edit', isLoggedIn, (req, res) => {
     const { id } = req.params;
     const { diada, address, date, castells, colles, photo, user } = req.body;
   
     Actuacio.findByIdAndUpdate(id, { diada, address, date, castells, colles, photo }, { new: true })
         .then( (updatedActuacioFromDB) => {
-            res.send(updatedActuacioFromDB)
+            // res.send(updatedActuacioFromDB)
+            res.redirect('/actuacions/:id')
         });
-})
+});
 
-router.post('/:id/delete', (req, res) => {
+router.post('/:id/delete', isLoggedIn, (req, res) => {
     const { id } = req.params;
 
     Actuacio.findByIdAndDelete(id)
       .then( () => {
-        res.send(`Actuacio ${id} has been deleted`);
-      })
-})
+        res.redirect('/actuacions')
+        // res.send(`Actuacio ${id} has been deleted`);
+      }).catch(err => next(err))
+});
 
 module.exports = router;

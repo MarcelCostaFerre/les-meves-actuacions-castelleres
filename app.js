@@ -23,6 +23,13 @@ const projectName = "les-meves-actuacions-castelleres";
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
+app.use(function(req, res, next) {
+    if (req.session.currentUser) {
+      res.locals.user = req.session.currentUser;
+    }
+    next();
+  });
+
 // 👇 Start handling routes here
 const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);
@@ -35,5 +42,14 @@ app.use("/actuacions", actuacioRoutes);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
+
+// Browser Sync
+const browserSync = require("browser-sync");
+
+// Start the server
+browserSync({
+  proxy: "http://localhost:3000", // proxying the app domain
+  files: ['public', 'views'] // watching the following folders
+});
 
 module.exports = app;

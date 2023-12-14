@@ -3,7 +3,9 @@
 <ul>
   {{#each dbActuacions}}
     <li>
-        {{this.diada}} by {{this.user.username}}
+        {{this.diada}} creada per {{this.user.username}}
+        <br>
+        <button type="submit">Hi vaig assistir</button>
         <br>
         <a href="/actuacions/{{this._id}}">Detalls</a> | <a href="/actuacions/{{this._id}}/edit">Edita l'actuació</a>
     </li>
