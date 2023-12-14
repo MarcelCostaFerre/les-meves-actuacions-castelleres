@@ -7,11 +7,12 @@ const isLoggedOut = require("../middleware/isLoggedOut");
 
 router.get('/', (req, res ) => {
     Actuacio.find()
-    .populate({
-        path:'user',
-        select: 'username -_id'
-    })
+    // .populate({
+    //     path:'author',
+    //     select: 'username -_id'
+    // })
     .then((dbActuacions) => {
+        // console.log(dbActuacions)
         // res.send(dbActuacions)
        res.render('actuacions/actuacions', { dbActuacions }) 
     })
@@ -19,22 +20,26 @@ router.get('/', (req, res ) => {
 });
 
 router.get('/nova-actuacio', isLoggedIn, (req, res) => {
-    // User.find()
-    // .then((dbUsers) => {
-        
-    // })
-    res.render('actuacions/nova-actuacio')
+    User.find()
+    .then((dbUsers) => {
+        res.render('actuacions/nova-actuacio', { dbUsers })
+    })
+    .catch((err) => console.log(`Err while displaying actuació input page: ${err}`));
 });
 
-router.post('/nova-actuacio', (req, res) => {
-    const { diada, address, date, castells, colles, photo, user } = req.body;
-    Actuacio.create({ diada, address, date, castells, colles, photo, user })
-    .then( (novaActuacio) => {
-        
-        // res.json(novaActuacio)
+router.post('/nova-actuacio', (req, res, next) => {
+    const { diada, address, date, castells, colles, photo, author } = req.body;
+    Actuacio.create({ diada, address, date, castells, colles, photo, author })
+    .then( novaActuacio => {
+        return User.findByIdAndUpdate(author, { $push: { actuacions: novaActuacio._id } })
+      })
+    .then( () => {
         res.redirect('/actuacions')
         })
-        .catch( res.render('actuacions/nova-actuacio') );
+        .catch( err => {
+            console.log(`Err while creating the actuació in the DB: ${err}`);
+            next(err);
+          });
 });
 
 router.get('/:id', (req, res) => {
@@ -42,23 +47,40 @@ router.get('/:id', (req, res) => {
   
     Actuacio.findById(id)
     .populate({
-        path:'user',
+        path:'author',
         select: 'username -_id'
     })
+    .populate({
+        path: 'comments',
+        populate: {
+          path: 'author',
+          select: 'username -_id',
+        }
+      })
       .then( (actuacioFromDB) => {
-        // res.json(actuacioFromDB);
-        res.render('actuacions/detall-actuacio', { actuacioFromDB });
+        User.find()
+            .then((usersFromDb) => {
+                // res.json(actuacioFromDB);
+                res.render('actuacions/detall-actuacio', { actuacioFromDB, usersFromDb }); 
+            })
       });
 });
 
 router.get('/:id/edit', isLoggedIn, (req, res) => {
     const { id } = req.params;
-    const { diada, address, date, castells, colles, photo, user } = req.body;
+    const { diada, address, date, castells, colles, photo, author } = req.body;
     Actuacio.findById(id)
     .populate({
-        path:'user',
+        path:'author',
         select: 'username -_id'
     })
+    // .populate({
+    //     path: 'comments',
+    //     populate: {
+    //       path: 'author',
+    //       select: 'username -_id',
+    //     }
+    //   })
     .then((actuacioFromDB) => {
        res.render('actuacions/edit', {actuacioFromDB}) 
     })
@@ -67,12 +89,12 @@ router.get('/:id/edit', isLoggedIn, (req, res) => {
 
 router.post('/:id/edit', isLoggedIn, (req, res) => {
     const { id } = req.params;
-    const { diada, address, date, castells, colles, photo, user } = req.body;
+    const { diada, address, date, castells, colles, photo, author } = req.body;
   
-    Actuacio.findByIdAndUpdate(id, { diada, address, date, castells, colles, photo }, { new: true })
+    Actuacio.findByIdAndUpdate(id, { diada, address, date, castells, colles, photo, author }, { new: true })
         .then( (updatedActuacioFromDB) => {
             // res.send(updatedActuacioFromDB)
-            res.redirect('/actuacions/:id')
+            res.redirect(`/actuacions/${id}`)
         });
 });
 
@@ -84,6 +106,11 @@ router.post('/:id/delete', isLoggedIn, (req, res) => {
         res.redirect('/actuacions')
         // res.send(`Actuacio ${id} has been deleted`);
       }).catch(err => next(err))
+});
+
+router.post('/:id/assistir', (req, res) => {
+    const { id } = req.params;
+
 });
 
 module.exports = router;

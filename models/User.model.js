@@ -20,6 +20,11 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    userImage: {
+      type: String,
+      default: '../public/images/default-avatar.jpg',
+    },
+    actuacions: [{ type: Schema.Types.ObjectId, ref: "Actuacio" }]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

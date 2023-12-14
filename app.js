@@ -40,6 +40,9 @@ app.use("/auth", authRoutes);
 const actuacioRoutes = require("./routes/Actuacio.routes");
 app.use("/actuacions", actuacioRoutes);
 
+const commentRoutes = require("./routes/comment.routes");
+app.use("/actuacions", commentRoutes);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 

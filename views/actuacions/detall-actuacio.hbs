@@ -1,14 +1,57 @@
 <h2>Diada: {{ actuacioFromDB.diada}}</h2>
-<img class="details-img" src={{actuacioFromDB.photo}} alt="foto-castell">
+<div>
+    <img class="details-img" src={{actuacioFromDB.photo}} alt="foto-castell">
+</div>
 <br>
-{{actuacioFromDB.address}}
-<br>
-{{actuacioFromDB.date}}
-<br>
-{{actuacioFromDB.castells}}
-<br>
-{{actuacioFromDB.colles}}
-<br>
+<div>
+    <strong>Adreça: </strong>{{actuacioFromDB.address}}
+    <br>
+    <strong>Data: </strong>{{actuacioFromDB.date}}
+    <br>
+    <strong>Castells: </strong>{{actuacioFromDB.castells}}
+    <br>
+    <strong>Altres Colles: </strong>{{actuacioFromDB.colles}}
+</div>
+<hr>
+{{#if user}}
+{{#unless actuacioFromDB.comments}}
+  <p>No comments yet!</p>
+{{/unless}}
+ 
+{{#each actuacioFromDB.comments}}
+    <p><b>{{this.author.username}}:</b> {{this.content}}</p>
+    <form action="/actuacions/{{actuacioFromDB._id}}/delete-comment" method="POST">
+        <button type="submit">Esborra el comentari</button>
+    </form>
+{{/each}}
+
+<hr>
+ 
+<h3>Afageix un comentari</h3>
+ 
+<form action="/actuacions/{{actuacioFromDB._id}}/comment" method="post">
+  <label> Your username: <br>
+    <select name="author" id="author">
+      {{#each usersFromDb}}
+        <option value="{{ this.id }}">
+          {{this.username}}
+        </option>
+      {{/each}}
+    </select>
+  </label><br>
+  
+  Commenta: <br>
+  {{!-- <input type="text" name="postAuthor" value="{{author.username}}" hidden /> --}}
+  <textarea name="content" cols="30" rows="2"></textarea>
+ <br>
+  <button type="submit">Comenta</button> | <button type="reset" value="Reset">Reset</button>
+</form>
+{{/if}}
+
+<hr>
 <a href="/actuacions">Back</a> | <a href="/actuacions/{{actuacioFromDB._id}}/edit">Edita l'actuació</a>
+<form action="/actuacions/{{actuacioFromDB.id}}/delete" method="POST">
+    <button type="submit">Esborra l'actuacio</button>
+</form>
 
 

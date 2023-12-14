@@ -19,13 +19,13 @@
           
           <li>
               {{#if user}}
-                Hola {{user.username}}!
+                Hola {{user.username}} {{user.userImage}}!
                 <span> | </span>
                 <a href="/actuacions/nova-actuacio">Crea una actuació</a>
-                <span> | </span>
               {{/if}}
-              <a href="/auth/signup">Registra't</a> 
+               
               {{#unless user}}
+                <a href="/auth/signup">Registra't</a>
                 <span> | </span>
                 <a href="/auth/login">Identifica't</a>
               {{/unless}}

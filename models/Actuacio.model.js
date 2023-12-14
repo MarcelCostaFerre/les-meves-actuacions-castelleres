@@ -27,7 +27,8 @@ const actuacioSchema = new Schema(
         type: String,
         default: '../public/images/castell-tipus.jpg',
       },
-    user: { type: Schema.Types.ObjectId, ref: "User" }
+    author: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }]
   },
   {
     timestamps: true,
