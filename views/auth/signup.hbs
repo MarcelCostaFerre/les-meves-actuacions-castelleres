@@ -1,20 +1,29 @@
 <div id="form">
-  <h2>Sign Up</h2>
+  <h2>Registra't</h2>
   <form action="/auth/signup" method="POST">
 
+    <label> Nom
+      <textarea type="text" name="nom" rows="1" cols="30" placeholder="El teu nom"></textarea>
+      {{!-- <input type="text" name="name" placeholder="El teu nom" /> --}}
+    </label>
+
     <label> Username
-      <input type="text" name="username" placeholder="Your username" />
+      <input type="text" name="username" placeholder="El teu username" />
     </label>
 
     <label> Email
-      <input type="email" name="email" placeholder="Your email" />
+      <input type="email" name="email" placeholder="El teu email" />
     </label>
 
     <label> Password
-      <input type="password" name="password" placeholder="Your password" />
+      <input type="password" name="password" placeholder="El teu password" />
     </label>
 
-    <button type="submit">Sign Up</button>
+    <label> Foto de perfil:
+      <input type="image" src="../../public/images/default-avatar.jpg" alt="foto de perfil">
+    </label>
+
+    <button type="submit">Registra't</button>
 
 
     {{#if errorMessage}}

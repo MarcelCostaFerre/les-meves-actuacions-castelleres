@@ -3,7 +3,7 @@
 <ul>
   {{#each dbActuacions}}
     <li>
-        {{this.diada}} creada per {{this.author.userImage}} {{this.author.username}} 
+        {{this.diada}} creada per <img src="{{this.author.userImage}}" alt="foto de perfil">  {{this.author.nom}} 
         <br>
         <form action="/actuacions/{{this.id}}/assistir" method="POST"></form>
           <button type="submit">Hi vaig assistir</button>

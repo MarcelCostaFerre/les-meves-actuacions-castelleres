@@ -48,7 +48,7 @@ router.get('/:id', (req, res) => {
     Actuacio.findById(id)
     .populate({
         path:'author',
-        select: 'username -_id'
+        select: 'nom -_id'
     })
     .populate({
         path: 'comments',
@@ -68,11 +68,11 @@ router.get('/:id', (req, res) => {
 
 router.get('/:id/edit', isLoggedIn, (req, res) => {
     const { id } = req.params;
-    const { diada, address, date, castells, colles, photo, author } = req.body;
+    // const { diada, address, date, castells, colles, photo, author } = req.body;
     Actuacio.findById(id)
     .populate({
         path:'author',
-        select: 'username -_id'
+        select: 'nom -_id'
     })
     // .populate({
     //     path: 'comments',

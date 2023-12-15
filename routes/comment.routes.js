@@ -25,7 +25,10 @@ router.post('/:id/comment', (req, res) => {
 
 });
 
-router.post('/:id/delete-comment', (req, res) => {
+router.post('/:id/:commentId/delete-comment', (req, res) => {
+    const { id } = req.params;
+    console.log(req.params)
+    // const { commentId } = req.params;
     Comment.findByIdAndDelete()
     .then( () => {
         res.redirect(`/actuacions/${id}`)

@@ -23,10 +23,10 @@ router.get("/signup", isLoggedOut, (req, res) => {
 
 // POST /auth/signup
 router.post("/signup", (req, res) => {
-  const { username, email, password } = req.body;
+  const { nom, username, email, password } = req.body;
 
   // Check that username, email, and password are provided
-  if (username === "" || email === "" || password === "") {
+  if (nom === "" || username === "" || email === "" || password === "") {
     res.status(400).render("auth/signup", {
       errorMessage:
         "All fields are mandatory. Please provide your username, email and password.",
@@ -62,7 +62,7 @@ router.post("/signup", (req, res) => {
     .then((salt) => bcrypt.hash(password, salt))
     .then((hashedPassword) => {
       // Create a user and save it in the database
-      return User.create({ username, email, password: hashedPassword });
+      return User.create({ nom, username, email, password: hashedPassword });
     })
     .then((user) => {
       res.redirect("/auth/login");

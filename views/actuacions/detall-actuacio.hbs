@@ -15,11 +15,11 @@
 <hr>
 {{#if user}}
 {{#unless actuacioFromDB.comments}}
-  <p>No comments yet!</p>
+  <p>Encara no hi ha comentaris!</p>
 {{/unless}}
  
 {{#each actuacioFromDB.comments}}
-    <p><b>{{this.author.username}}:</b> {{this.content}}</p>
+    <p><b>{{this.author.name}}:</b> {{this.content}}</p>
     <form action="/actuacions/{{actuacioFromDB._id}}/delete-comment" method="POST">
         <button type="submit">Esborra el comentari</button>
     </form>
@@ -29,7 +29,7 @@
  
 <h3>Afageix un comentari</h3>
  
-<form action="/actuacions/{{actuacioFromDB._id}}/comment" method="post">
+<form action="/actuacions/{{actuacioFromDB._id}}/{{commentFromDb._id}}/comment" method="post">
   <label> Your username: <br>
     <select name="author" id="author">
       {{#each usersFromDb}}

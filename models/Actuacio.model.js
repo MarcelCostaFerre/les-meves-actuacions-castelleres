@@ -19,15 +19,17 @@ const actuacioSchema = new Schema(
     castells: {
         type: String,
         required: true,
+        trim: true
       },
     colles: {
         type: String,
+        trim: true
       },
     photo: {
-        type: String,
-        default: '../public/images/castell-tipus.jpg',
+        type: [String],
+        default: ['../public/images/castell-tipus.jpg'],
       },
-    author: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    author: { type: Schema.Types.ObjectId, ref: "User" },
     comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }]
   },
   {

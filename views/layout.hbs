@@ -19,7 +19,7 @@
           
           <li>
               {{#if user}}
-                Hola {{user.username}} {{user.userImage}}!
+                Hola {{user.username}} <img src="{{user.userImage}}" alt="foto de perfil">!
                 <span> | </span>
                 <a href="/actuacions/nova-actuacio">Crea una actuació</a>
               {{/if}}
