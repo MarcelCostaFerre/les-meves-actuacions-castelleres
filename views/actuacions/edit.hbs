@@ -27,8 +27,23 @@
   <br>
 
   <label> Foto:
-    <input type="image" src="../public/images/castell-tipus.jpg" alt="foto-castell" value="{{actuacioFromDB.photo}}">
+    <input type="file" name="actuacio-image">
   </label>
+
+  {{#if imageUrl }}
+    <p>Imatge actual:</p>
+    <img src="{{ imageUrl }}" class="img-fluid" alt="">
+    <a href="/movies/{{id}}/delete-image">Eliminar imatge</a>
+  {{/if}}
+
+  {{#unless imageUrl}}
+    <p>Imatge actual:</p>
+    <img src="{{ actuacioFromDB.photo }}" class="img-fluid" alt="">
+  {{/unless}}
+
+  {{!-- <label> Foto:
+    <input type="image" src="../public/images/castell-tipus.jpg" alt="foto-castell" value="{{actuacioFromDB.photo}}">
+  </label> --}}
   <br>
 
   {{!-- <label for="user-select"> Creada per:

@@ -16,16 +16,25 @@ const Actuacio = require("../models/Actuacio.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
+// ********* require fileUploader in order to use it *********
+const fileUploader = require('../config/cloudinary.config');
+
 // GET /auth/signup
 router.get("/signup", isLoggedOut, (req, res) => {
   res.render("auth/signup");
 });
 
 // POST /auth/signup
-router.post("/signup", (req, res) => {
+router.post("/signup", isLoggedOut, fileUploader.single('user-image'), (req, res, next) => {
   const { nom, username, email, password } = req.body;
+  const user = {
+    nom: nom,
+    username: username,
+    email: email,
+  }
 
-  // Check that username, email, and password are provided
+
+  // Check that nom, username, email, and password are provided
   if (nom === "" || username === "" || email === "" || password === "") {
     res.status(400).render("auth/signup", {
       errorMessage:
@@ -34,6 +43,7 @@ router.post("/signup", (req, res) => {
 
     return;
   }
+  
 
   if (password.length < 6) {
     res.status(400).render("auth/signup", {
@@ -56,13 +66,19 @@ router.post("/signup", (req, res) => {
   }
   */
 
+    // check que el nou user tingi un file d'on agafar la imatge
+    if (req.hasOwnProperty('file') ) {
+      user.userImage = req.file.path;
+    }
+
   // Create a new user - start by hashing the password
   bcrypt
     .genSalt(saltRounds)
     .then((salt) => bcrypt.hash(password, salt))
     .then((hashedPassword) => {
+      user.password = hashedPassword
       // Create a user and save it in the database
-      return User.create({ nom, username, email, password: hashedPassword });
+      return User.create(user);
     })
     .then((user) => {
       res.redirect("/auth/login");

@@ -1,26 +1,26 @@
 <div id="form">
   <h2>Registra't</h2>
-  <form action="/auth/signup" method="POST">
+  <form action="/auth/signup" method="POST" enctype="multipart/form-data">
 
     <label> Nom
-      <textarea type="text" name="nom" rows="1" cols="30" placeholder="El teu nom"></textarea>
+      <textarea type="text" name="nom" rows="1" cols="30" placeholder="El teu nom" >Minyons de Terrassa</textarea>
       {{!-- <input type="text" name="name" placeholder="El teu nom" /> --}}
     </label>
 
     <label> Username
-      <input type="text" name="username" placeholder="El teu username" />
+      <input type="text" name="username" placeholder="El teu username" value="Minyons"/>
     </label>
 
     <label> Email
-      <input type="email" name="email" placeholder="El teu email" />
+      <input type="email" name="email" placeholder="El teu email" value="minyons@minyons.cat"/>
     </label>
 
     <label> Password
-      <input type="password" name="password" placeholder="El teu password" />
+      <input type="password" name="password" placeholder="El teu password" value="minyons"/>
     </label>
 
     <label> Foto de perfil:
-      <input type="image" src="../../public/images/default-avatar.jpg" alt="foto de perfil">
+      <input type="file" name="user-image">
     </label>
 
     <button type="submit">Registra't</button>

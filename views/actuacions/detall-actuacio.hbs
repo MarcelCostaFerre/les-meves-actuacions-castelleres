@@ -1,6 +1,11 @@
 <h2>Diada: {{ actuacioFromDB.diada}}</h2>
+{{!-- <div>
+    {{#each actuacioFromDB.photo}}
+        <img src={{this}} alt="foto-castell">
+    {{/each}}
+</div> --}}
 <div>
-    <img class="details-img" src={{actuacioFromDB.photo}} alt="foto-castell">
+        <img src={{actuacioFromDB.photo}} alt="foto-castell">
 </div>
 <br>
 <div>
@@ -19,18 +24,18 @@
 {{/unless}}
  
 {{#each actuacioFromDB.comments}}
-    <p><b>{{this.author.name}}:</b> {{this.content}}</p>
-    <form action="/actuacions/{{actuacioFromDB._id}}/delete-comment" method="POST">
+    <p><b>{{this.author.username}}:</b> {{this.content}}</p>
+    {{!-- <form action="/actuacions/{{this._id}}/delete-comment" method="POST">
         <button type="submit">Esborra el comentari</button>
-    </form>
+    </form> --}}
 {{/each}}
 
 <hr>
  
 <h3>Afageix un comentari</h3>
  
-<form action="/actuacions/{{actuacioFromDB._id}}/{{commentFromDb._id}}/comment" method="post">
-  <label> Your username: <br>
+<form action="/actuacions/{{actuacioFromDB._id}}/comment" method="POST">
+  {{!-- <label> Your username: <br>
     <select name="author" id="author">
       {{#each usersFromDb}}
         <option value="{{ this.id }}">
@@ -38,11 +43,11 @@
         </option>
       {{/each}}
     </select>
-  </label><br>
+  </label><br> --}}
   
-  Commenta: <br>
+  <br>
   {{!-- <input type="text" name="postAuthor" value="{{author.username}}" hidden /> --}}
-  <textarea name="content" cols="30" rows="2"></textarea>
+  <textarea name="content" cols="30" rows="2" >Mola actuar al Mnactec en jornada de portes obertes i aprofitar per visitar el museu.</textarea>
  <br>
   <button type="submit">Comenta</button> | <button type="reset" value="Reset">Reset</button>
 </form>

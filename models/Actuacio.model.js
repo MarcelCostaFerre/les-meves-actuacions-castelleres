@@ -13,7 +13,7 @@ const actuacioSchema = new Schema(
       trim: true,
     },
     date: {
-      type: Date,
+      type: String,
       required: true,
     },
     castells: {
@@ -26,8 +26,8 @@ const actuacioSchema = new Schema(
         trim: true
       },
     photo: {
-        type: [String],
-        default: ['../public/images/castell-tipus.jpg'],
+        type: String,
+        default: '/images/castell-tipus-200px.jpg'
       },
     author: { type: Schema.Types.ObjectId, ref: "User" },
     comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }]

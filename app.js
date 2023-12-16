@@ -52,6 +52,7 @@ const browserSync = require("browser-sync");
 // Start the server
 browserSync({
   proxy: "http://localhost:3000", // proxying the app domain
+  open: false, 
   files: ['public', 'views'] // watching the following folders
 });
 

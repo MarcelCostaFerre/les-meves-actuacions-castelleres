@@ -2,33 +2,37 @@
 
 <form action="/actuacions/nova-actuacio" method="POST">
   <label> Diada:
-    <textarea type="text" name="diada" rows="1" cols="30"> </textarea>
+    <textarea type="text" name="diada" rows="1" cols="30" placeholder="Nom de l'actuació">Pati del Mnactec</textarea>
   </label>
   <br>
 
   <label> Adreça:
-    <textarea type="text" name="address" rows="1" cols="30"></textarea>
+    <textarea type="text" name="address" rows="1" cols="30" placeholder="Lloc de l'actuació">Mnactec, Terrassa</textarea>
   </label>
   <br>
 
   <label> Data:
-    <input type="date" name="date">
+    <input type="date" name="date" value="2023-12-15">
   </label>
   <br>
 
   <label> Castells:
-    <textarea type="text" name="castells" rows="1" cols="30"></textarea>
+    <textarea type="text" name="castells" rows="1" cols="30" placeholder="Castells fets a l'actuació">Pde5, 3de7p, 4de7, 5de7, Pde5, Pde4, Pde4</textarea>
   </label>
   <br>
 
   <label> Altres colles:
-    <textarea type="text" name="colles" rows="1" cols="30"></textarea>
+    <textarea type="text" name="colles" rows="1" cols="30" placeholder="Colles amb les que has actuat"></textarea>
   </label>
   <br>
 
   <label> Foto:
-    <input type="image" src="../public/images/castell-tipus.jpg" alt="foto-castell">
+    <input type="file" name="actuacio-image">
   </label>
+
+  {{!-- <label> Foto:
+    <input type="image" src="/images/castell-tipus.jpg" alt="foto-castell">
+  </label> --}}
 
   <br>
 

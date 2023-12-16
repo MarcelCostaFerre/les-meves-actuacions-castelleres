@@ -28,7 +28,7 @@ const userSchema = new Schema(
     },
     userImage: {
       type: String,
-      default: '../public/images/default-avatar.jpg',
+      default: '/images/default-avatar.jpg',
     },
     actuacions: [{ type: Schema.Types.ObjectId, ref: "Actuacio" }]
   },
