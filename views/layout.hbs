@@ -21,7 +21,7 @@
               {{#if user}}
                 Hola {{user.username}} <img src="{{user.userImage}}" alt="foto de perfil">!
                 <span> | </span>
-                <a href="/actuacions/nova-actuacio">Crea una actuació</a>
+                <a href="/actuacions/nova-actuacio">Crea una actuació</a> | <a href='/actuacions/user/{{user._id}}'>Les meves actuacions</a>
               {{/if}}
                
               {{#unless user}}

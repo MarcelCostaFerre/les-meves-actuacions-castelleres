@@ -82,6 +82,22 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.get('/user/:id', (req, res) => {
+    const { id } = req.params;
+  
+    User.findById(id)
+    .populate({
+        path: 'actuacions',
+    })
+    .then((userFromDB) => {
+        if(userFromDB.username === req.session.currentUser.username){
+            res.render('actuacions/user-profile', {userFromDB});
+            }else{res.redirect('/actuacions')}
+        // res.send(userFromDB)
+        
+    })
+})
+
 router.get('/:id/edit', isLoggedIn, (req, res) => {
     const { id } = req.params;
 

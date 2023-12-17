@@ -1,0 +1,21 @@
+<h2>Les meves actuacions</h2>
+<img src="{{userFromDB.userImage}}" alt="foto de perfil">  {{userFromDB.nom}}
+{{#if user}}
+<ul>
+  {{#each userFromDB.actuacions}}
+    <li>
+        {{this.diada}}
+        <br>
+        {{!-- <form action="/actuacions/{{this.id}}/assistir" method="POST"></form>
+          <button type="submit">Hi vaig assistir</button>
+        </form>
+        <br> --}}
+        <a href="/actuacions/{{this._id}}">Detalls</a> | <a href="/actuacions/{{this._id}}/edit">Edita l'actuació</a>
+        <form action="/actuacions/{{this.id}}/delete" method="POST">
+          <button type="submit">Esborra l'actuacio</button>
+        </form>
+        <hr>
+    </li>
+  {{/each}}
+</ul>
+{{/if}}
