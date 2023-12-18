@@ -5,46 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{appTitle}}</title>
+
     <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
   <body>
     <header>
-      <nav>
-        <ul>
-          {{!-- <li id="to-left">
-            <p><a href="/"> Users - demo </a></p>
-          </li> --}}
-          
-          <li>
-              {{#if user}}
-                Hola {{user.username}} <img src="{{user.userImage}}" alt="foto de perfil">!
-                <span> | </span>
-                <a href="/actuacions/nova-actuacio">Crea una actuació</a> | <a href='/actuacions/user/{{user._id}}'>Les meves actuacions</a>
-              {{/if}}
-               
-              {{#unless user}}
-                <a href="/auth/signup">Registra't</a>
-                <span> | </span>
-                <a href="/auth/login">Identifica't</a>
-              {{/unless}}
-              
-              <form id="logout-form" action="/auth/logout" method="POST">
-                <button>Desconnecta't</button>
-              </form>
-              {{!-- <span> | </span>
-              <a href="/userProfile">El teu perfil</a>
-              <span> | </span> --}}
-              <a href="/">Home</a> | <a href="/actuacions">Actuacions</a>
-          </li>
-        </ul>
+      <nav> 
+        <div class="flex">
+          {{#if user}}
+            <img class="img-20px" src="{{user.userImage}}" alt="foto de perfil">
+            <p>Hola {{user.username}}!</p>
+          {{/if}}
+          {{#unless user}}
+            <a href="/auth/signup">Registra't</a>
+            <a href="/auth/login">Identifica't</a>
+          {{/unless}}
+        </div>
+        <div class="flex-gap">
+            <a  href="/actuacions">Actuacions</a>
+          {{#if user}}
+            <a href="/actuacions/nova-actuacio">Crea una actuació</a>
+            <a href='/actuacions/user/{{user._id}}'>Les meves actuacions</a>
+          {{/if}}
+        </div>
+        <div class="flex-gap">
+          {{!-- <ul> --}}
+            {{!-- <li> --}}
+                <a  href="/">Home</a>
+                
+                <form action="/auth/logout" method="POST">
+                  <button class="btn btn-sm" style="background-color: white; color:#ee2229">Desconnecta't</button>
+                </form>
+            {{!-- </li> --}}
+          {{!-- </ul> --}}
+        </div>  
       </nav>
     </header>
 
     {{{body}}}
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="/js/script.js"></script>
+    
   </body>
 
 </html>

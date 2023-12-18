@@ -1,19 +1,25 @@
 <h2>Actuacions</h2>
-
-<ul>
-  {{#each dbActuacions}}
-    <li>
-        {{this.diada}} creada per <img src="{{this.author.userImage}}" alt="foto de perfil">  {{this.author.nom}} 
-        <br>
-        {{!-- <form action="/actuacions/{{this.id}}/assistir" method="POST"></form>
-          <button type="submit">Hi vaig assistir</button>
-        </form>
-        <br> --}}
-        <a href="/actuacions/{{this._id}}">Detalls</a> | <a href="/actuacions/{{this._id}}/edit">Edita l'actuació</a>
-        <form action="/actuacions/{{this.id}}/delete" method="POST">
-          <button type="submit">Esborra l'actuacio</button>
-        </form>
-        <hr>
-    </li>
-  {{/each}}
-</ul>
+<div class="actuacions">
+  
+    {{#each dbActuacions}}
+      <div class="card" style="width: 18rem;">
+        <img src="{{this.photo}}" class="card-img-top img25" alt="foto de la actuacio">
+        <div class="card-body">
+          <h5 class="card-title">{{this.diada}}</h5> 
+          <p class="card-text">creada per <img class="img-20px" src="{{this.author.userImage}}" alt="foto de perfil">  {{this.author.nom}}</p>
+          <a href="/actuacions/{{this._id}}" class="btn" style="background-color: #ee2229; color:white">Detall de l'actuació</a>
+          <br> <br>
+          <form action="/actuacions/{{this.id}}/delete" method="POST">
+            <button type="submit" class="btn" style="background-color: #ee2229; color:white">Esborra l'actuacio</button>
+          </form>   
+        </div>    
+            {{!-- <form action="/actuacions/{{this.id}}/assistir" method="POST"></form>
+              <button type="submit">Hi vaig assistir</button>
+            </form>
+            <br> --}}
+        
+            {{!-- | <a href="/actuacions/{{this._id}}/edit">Edita l'actuació</a> --}}
+      </div>  
+    {{/each}}
+  
+</div>
