@@ -34,7 +34,7 @@ nav a {
 .flex-gap {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 .flex-between {
   display: flex;
@@ -47,6 +47,18 @@ nav a {
 .img25 {
   width: 25%;
   height: auto;
+}
+.img40 {
+  width: 40%;
+  height: auto;
+}
+.img50 {
+  width: 50%;
+  height: auto;
+}
+.img75x125 {
+  width: 75px;
+  height: 125px;
 }
 nav p {
   margin-left: 0.3rem;

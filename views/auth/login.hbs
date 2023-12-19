@@ -1,21 +1,22 @@
 <div id="login-form">
   <h2>Identifica't</h2>
-  <form action="/auth/login" method="POST">
-
-    <label> Username
-      <input type="text" name="username" placeholder="El teu username" value="Minyons"/>
-    </label>
-
-    {{!-- <label> Email
-      <input type="email" name="email" placeholder="El teu email" />
-    </label> --}}
-
-    <label> Password
-      <input type="password" name="password" placeholder="El teu password" value="minyons"/>
-    </label>
-
-    <button type="submit">Identifica't</button>
-
+  <form action="/auth/login" method="POST" class="row g-2">
+    <div class="col-md-2">
+      <label class="form-label"> <b>Username</b>
+        <input class="form-control" type="text" name="username" placeholder="El teu username" value="Minyons"/>
+      </label>
+    </div>
+      {{!-- <label> Email
+        <input type="email" name="email" placeholder="El teu email" />
+      </label> --}}
+    <div class="col-md-2">
+      <label class="form-label"> <b>Password</b>
+        <input class="form-control" type="password" name="password" placeholder="El teu password" value="minyons"/>
+      </label>
+    </div>
+    <div class="col-12">
+      <button class="btn" style="background-color: #ee2229; color:white" type="submit">Identifica't</button>
+    </div>
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>

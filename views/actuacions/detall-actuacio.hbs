@@ -7,7 +7,7 @@
 <div class="flex-between">
     <div class="flex">
         <div>
-            <img src={{actuacioFromDB.photo}} alt="foto-castell">
+            <img class="img50" src={{actuacioFromDB.photo}} alt="foto-castell">
         </div>
         <div>
             <strong>Adreça: </strong>{{actuacioFromDB.address}}
@@ -57,9 +57,12 @@
     </div>
 </div>
 <hr>
-<a href="/actuacions">Back</a> | <a href="/actuacions/{{actuacioFromDB._id}}/edit">Edita l'actuació</a>
-<form action="/actuacions/{{actuacioFromDB.id}}/delete" method="POST">
-    <button type="submit">Esborra l'actuacio</button>
-</form>
+<div class="flex-gap">
+    <a type="submit" class="btn" style="background-color: #ee2229; color:white" href="/actuacions/{{actuacioFromDB._id}}/edit">Edita l'actuació</a>
+    <form action="/actuacions/{{actuacioFromDB.id}}/delete" method="POST">
+        <button type="submit" class="btn" style="background-color: #ee2229; color:white" type="submit">Esborra l'actuacio</button>
+    </form>
+</div>    
+<a class="btn btn-sm" style="background-color: white; color:#ee2229" href="/actuacions">Back</a>
 
 

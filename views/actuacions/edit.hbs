@@ -1,62 +1,67 @@
 <h2>Edita una nova actuació</h2>
 
-<form action="/actuacions/{{actuacioFromDB.id}}/edit" method="POST">
-  <label> Diada:
-    <textarea type="text" name="diada" rows="1" cols="30"> {{actuacioFromDB.diada}} </textarea>
-  </label>
-  <br>
+<form action="/actuacions/{{actuacioFromDB.id}}/edit" method="POST" enctype="multipart/form-data" class="row g-3">
+  <div class="col-md-6">
+    <label class="form-label"> <b>Diada</b>
+      <textarea class="form-control" type="text" name="diada" rows="1" cols="70"> {{actuacioFromDB.diada}} </textarea>
+    </label>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label"> <b>Adreça</b>
+      <textarea class="form-control" type="text" name="address" rows="1" cols="70"> {{actuacioFromDB.address}} </textarea>
+    </label>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label"> <b>Data</b>
+      <input class="form-control" type="date" name="date" value="{{actuacioFromDB.date}}">
+    </label>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label"> <b>Castells</b>
+      <textarea class="form-control" type="text" name="castells" rows="1" cols="70"> {{actuacioFromDB.castells}} </textarea>
+    </label>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label"> <b>Foto</b>
+      <input class="form-control" style="background-color: white; color:#ee2229" type="file" name="actuacio-image">
+    </label>
+  
+    {{#if imageUrl }}
+      <p>Imatge actual:</p>
+      <img src="{{ imageUrl }}" class="img-fluid" alt="">
+      <a href="/movies/{{id}}/delete-image">Eliminar imatge</a>
+    {{/if}}
 
-  <label> Adreça:
-    <textarea type="text" name="address" rows="1" cols="30"> {{actuacioFromDB.address}} </textarea>
-  </label>
-  <br>
+    {{#unless imageUrl}}
+      <p>Imatge actual:</p>
+      <img src="{{ actuacioFromDB.photo }}" class="img-fluid" alt="">
+    {{/unless}}
+  </div>
+  <div class="col-md-6">
+    <label class="form-label"> <b>Altres colles</b>
+      <textarea class="form-control" type="text" name="colles" rows="1" cols="70"> {{actuacioFromDB.colles}} </textarea>
+    </label>
+  </div>
 
-  <label> Data:
-    <input type="date" name="date" value="{{actuacioFromDB.date}}">
-  </label>
-  <br>
 
-  <label> Castells:
-    <textarea type="text" name="castells" rows="1" cols="30"> {{actuacioFromDB.castells}} </textarea>
-  </label>
-  <br>
+    {{!-- <label> Foto:
+      <input type="image" src="../public/images/castell-tipus.jpg" alt="foto-castell" value="{{actuacioFromDB.photo}}">
+    </label> --}}
+    
 
-  <label> Altres colles:
-    <textarea type="text" name="colles" rows="1" cols="30"> {{actuacioFromDB.colles}} </textarea>
-  </label>
-  <br>
-
-  <label> Foto:
-    <input type="file" name="actuacio-image">
-  </label>
-
-  {{#if imageUrl }}
-    <p>Imatge actual:</p>
-    <img src="{{ imageUrl }}" class="img-fluid" alt="">
-    <a href="/movies/{{id}}/delete-image">Eliminar imatge</a>
-  {{/if}}
-
-  {{#unless imageUrl}}
-    <p>Imatge actual:</p>
-    <img src="{{ actuacioFromDB.photo }}" class="img-fluid" alt="">
-  {{/unless}}
-
-  {{!-- <label> Foto:
-    <input type="image" src="../public/images/castell-tipus.jpg" alt="foto-castell" value="{{actuacioFromDB.photo}}">
-  </label> --}}
-  <br>
-
-  {{!-- <label for="user-select"> Creada per:
-    <select name="user">
-      <option disable selected value=""></option>
-      {{#each actuacioFromDB.user}}
-        <option value="{{this._id}}"> {{this.username}} </option>
-      {{/each}}
-    </select>
-  </label> --}}
-  <br>
-
-  <button type="submit">Save</button> | <button type="reset" value="Reset">Reset</button>
+    {{!-- <label for="user-select"> Creada per:
+      <select name="user">
+        <option disable selected value=""></option>
+        {{#each actuacioFromDB.user}}
+          <option value="{{this._id}}"> {{this.username}} </option>
+        {{/each}}
+      </select>
+    </label> --}}
+    
+  <div class="col-12">
+    <button class="btn" style="background-color: #ee2229; color:white" type="submit">Save</button>
+    <button class="btn" style="background-color: #ee2229; color:white" type="reset" value="Reset">Reset</button>
+  </div>
 </form>
 <hr>
-<a href="/actuacions/{{actuacioFromDB._id}}">Back</a>
+<a class="btn btn-sm" style="background-color: white; color:#ee2229" href='/actuacions/user/{{user._id}}'>Back</a>
