@@ -62,6 +62,7 @@ router.post('/nova-actuacio', fileUploader.single('actuacio-image'), (req, res, 
 
 router.get('/:id', (req, res) => {
     const { id } = req.params;
+    
   
     Actuacio.findById(id)
     .populate({
@@ -76,9 +77,25 @@ router.get('/:id', (req, res) => {
           select: 'username -_id',
         }
     })
+    // .then((actuacioFromDB) => {
+    //     const canEdit = ''
+    //     if(actuacioFromDB.author.username === req.session.currentUser.username){
+    //         return canEdit
+    //     }
+    //     res.render('actuacions/detall-actuacio', {actuacioFromDB, canEdit})
+    // })
     .then( (actuacioFromDB) => {
         // res.send(actuacioFromDB)
-        res.render('actuacions/detall-actuacio', { actuacioFromDB });
+      
+        if(!req.session.currentUser){
+            res.render('actuacions/detall-actuacio', { actuacioFromDB })
+        
+        }else{
+            let canEdit = actuacioFromDB.author.username === req.session.currentUser.username
+            res.render('actuacions/detall-actuacio', { actuacioFromDB, canEdit })
+        }
+        
+        
     });
 });
 
@@ -121,11 +138,13 @@ router.get('/:id/edit', isLoggedIn, (req, res) => {
     //         res.redirect('/actuacions')
     //     }
     // })
+
     .then((actuacioFromDB) => {
         if(actuacioFromDB.author.username === req.session.currentUser.username){
-        res.render('actuacions/edit', {actuacioFromDB})
-        }else{res.redirect('/actuacions')}
+            res.render('actuacions/edit', {actuacioFromDB})
+        }else{res.redirect(`/actuacions/${id}`)}
     })
+    
 });
 
 router.post('/:id/edit', isLoggedIn, fileUploader.single('actuacio-image'), (req, res) => {

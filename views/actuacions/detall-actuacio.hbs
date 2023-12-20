@@ -4,12 +4,12 @@
         <img src={{this}} alt="foto-castell">
     {{/each}}
 </div> --}}
-<div class="flex-between">
-    <div class="flex">
-        <div>
-            <img class="img50" src={{actuacioFromDB.photo}} alt="foto-castell">
+<div>
+    <div class="row g-0">
+        <div class="col-md-4">
+            <a href="{{actuacioFromDB.photo}}" target="_blank"><img class="img50" src={{actuacioFromDB.photo}} alt="foto-castell"></a>
         </div>
-        <div>
+        <div class="col-md-4">
             <strong>Adreça: </strong>{{actuacioFromDB.address}}
             <br>
             <strong>Data: </strong>{{actuacioFromDB.date}}
@@ -18,51 +18,60 @@
             <br>
             <strong>Altres Colles: </strong>{{actuacioFromDB.colles}}
         </div>
+        <div class="col-md-4">
+            {{#if user}}
+                <h3>Comentaris</h3>
+                
+                    {{#unless actuacioFromDB.comments}}
+                    <p>Encara no hi ha comentaris!</p>
+                    {{/unless}}
+                    
+                    {{#each actuacioFromDB.comments}}
+                        <p><b>{{this.author.username}}:</b> {{this.content}}</p>
+                        {{!-- <form action="/actuacions/{{this._id}}/delete-comment" method="POST">
+                            <button type="submit">Esborra el comentari</button>
+                        </form> --}}
+                    {{/each}}
+            {{/if}}
+        </div>
     </div>
     <div>
         {{#if user}}
-        {{#unless actuacioFromDB.comments}}
-        <p>Encara no hi ha comentaris!</p>
-        {{/unless}}
-        
-        {{#each actuacioFromDB.comments}}
-            <p><b>{{this.author.username}}:</b> {{this.content}}</p>
-            {{!-- <form action="/actuacions/{{this._id}}/delete-comment" method="POST">
-                <button type="submit">Esborra el comentari</button>
-            </form> --}}
-        {{/each}}
 
-        <hr>
-        
-        <h3>Afageix un comentari</h3>
-        
-        <form action="/actuacions/{{actuacioFromDB._id}}/comment" method="POST">
-        {{!-- <label> Your username: <br>
-            <select name="author" id="author">
-            {{#each usersFromDb}}
-                <option value="{{ this.id }}">
-                {{this.username}}
-                </option>
-            {{/each}}
-            </select>
-        </label><br> --}}
-        
-        <br>
-        {{!-- <input type="text" name="postAuthor" value="{{author.username}}" hidden /> --}}
-        <textarea name="content" cols="30" rows="2" >Mola actuar al Mnactec en jornada de portes obertes i aprofitar per visitar el museu.</textarea>
-        <br>
-        <button type="submit">Comenta</button> | <button type="reset" value="Reset">Reset</button>
-        </form>
+            <hr>
+            
+            <h3>Afegeix un comentari</h3>
+            
+            <form action="/actuacions/{{actuacioFromDB._id}}/comment" method="POST">
+            {{!-- <label> Your username: <br>
+                <select name="author" id="author">
+                {{#each usersFromDb}}
+                    <option value="{{ this.id }}">
+                    {{this.username}}
+                    </option>
+                {{/each}}
+                </select>
+            </label><br> --}}
+            
+            <br>
+            {{!-- <input type="text" name="postAuthor" value="{{author.username}}" hidden /> --}}
+            <textarea name="content" cols="50" rows="5" >Mola actuar al Mnactec en jornada de portes obertes i aprofitar per visitar el museu.</textarea>
+            <br>
+            <button class="btn btn-sm" style="background-color: #ee2229; color:white" type="submit">Comenta</button>
+            <button class="btn btn-sm" style="background-color: #ee2229; color:white" type="reset" value="Reset">Reset</button>
+            </form>
         {{/if}}
     </div>
 </div>
 <hr>
-<div class="flex-gap">
-    <a type="submit" class="btn" style="background-color: #ee2229; color:white" href="/actuacions/{{actuacioFromDB._id}}/edit">Edita l'actuació</a>
-    <form action="/actuacions/{{actuacioFromDB.id}}/delete" method="POST">
-        <button type="submit" class="btn" style="background-color: #ee2229; color:white" type="submit">Esborra l'actuacio</button>
-    </form>
-</div>    
+{{#if canEdit}}
+    <div class="flex-gap">
+        <a type="submit" class="btn" style="background-color: #ee2229; color:white" href="/actuacions/{{actuacioFromDB._id}}/edit">Edita l'actuació</a>
+        <form action="/actuacions/{{actuacioFromDB.id}}/delete" method="POST">
+            <button  type="submit" class="btn" style="background-color: #ee2229; color:white" type="submit">Esborra l'actuacio</button>
+        </form>
+    </div>  
+{{/if}}  
 <a class="btn btn-sm" style="background-color: white; color:#ee2229" href="/actuacions">Back</a>
 
 
