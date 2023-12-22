@@ -94,12 +94,10 @@ router.get('/:id', (req, res) => {
             let canEdit = actuacioFromDB.author.username === req.session.currentUser.username
             res.render('actuacions/detall-actuacio', { actuacioFromDB, canEdit })
         }
-        
-        
     });
 });
 
-router.get('/user/:id', (req, res) => {
+router.get('/user/:id', isLoggedIn, (req, res) => {
     const { id } = req.params;
   
     User.findById(id)

@@ -1,5 +1,24 @@
-<h1>ACTUACIONS CASTELLERES</h1>
-<br>
-{{#if user}}
-    <a href="/actuacions/nova-actuacio" class="btn" style="background-color: #ee2229; color:white">Crea una actuació</a>
-{{/if}}
+<div class=" container-fluid" style="background-color: #ee2229">
+    <div>
+        <h1>ACTUACIONS CASTELLERES</h1>
+    </div>
+    <div class="flex-center">
+    <p>
+        <b>Aquí podeu crear les vostres actuacions i veuri i escriure comentaris a les actuacions de les altres colles</b>
+    </p>
+    </div>
+    <div class="flex-center">
+    {{#if user}}
+        {{!-- <a href="/actuacions/nova-actuacio" class="btn" style="background-image: url('/images/faixa-enrotllada.png')">Crea una actuació</a> --}}
+        <a href="/actuacions/nova-actuacio" class="btn" style="background-color: #ee2229; color:white">Crea una actuació</a>
+    {{/if}}
+    </div>
+    <div class="flex">
+        <div>
+            <img src="/images/faixa.png" alt="">
+        </div>
+        <div>
+            <img src="/images/2de8net.png" alt="">
+        </div>
+    </div>
+</div>     

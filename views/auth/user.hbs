@@ -1,0 +1,11 @@
+{{#if canEdit}} 
+    
+    <div class="card" style="width: 18rem;">
+        <img src="{{userFromDb.userImage}}" alt="User Image">
+        <div class="card-body">
+            <h5 class="card-title">{{userFromDb.nom}}</h5> 
+            <p class="card-text"><b>Username: </b> {{userFromDb.username}}</p>
+            <p class="card-text"><b>Email: </b> {{userFromDb.email}}</p>
+            <a type="submit" class="btn" style="background-color: #ee2229; color:white" href="/auth/{{userFromDb._id}}/edit">Edita l'usuari</a>
+        </div>
+{{/if}}

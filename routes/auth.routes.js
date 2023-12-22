@@ -97,6 +97,22 @@ router.post("/signup", isLoggedOut, fileUploader.single('user-image'), (req, res
     });
 });
 
+router.get('/:id', isLoggedIn, (req, res) => {
+  const { id } = req.params
+  User.findById(id)
+  .then((userFromDb) => {
+    let canEdit = false
+    if(req.session.currentUser){
+      canEdit = actuacioFromDB.author.username === req.session.currentUser.username
+    }
+    res.render('auth/user', { userFromDb, canEdit })
+  })
+})
+
+router.post('/:id/edit', isLoggedIn, fileUploader.single('actuacio-image'), (req, res) => {
+  
+})
+
 // GET /auth/login
 router.get("/login", isLoggedOut, (req, res) => {
   res.render("auth/login");
