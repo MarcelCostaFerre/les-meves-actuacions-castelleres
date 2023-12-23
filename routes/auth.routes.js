@@ -97,22 +97,6 @@ router.post("/signup", isLoggedOut, fileUploader.single('user-image'), (req, res
     });
 });
 
-router.get('/:id', isLoggedIn, (req, res) => {
-  const { id } = req.params
-  User.findById(id)
-  .then((userFromDb) => {
-    let canEdit = false
-    if(req.session.currentUser){
-      canEdit = actuacioFromDB.author.username === req.session.currentUser.username
-    }
-    res.render('auth/user', { userFromDb, canEdit })
-  })
-})
-
-router.post('/:id/edit', isLoggedIn, fileUploader.single('actuacio-image'), (req, res) => {
-  
-})
-
 // GET /auth/login
 router.get("/login", isLoggedOut, (req, res) => {
   res.render("auth/login");
@@ -185,6 +169,107 @@ router.post("/logout", (req, res) => {
     res.redirect("/");
   });
 });
+
+router.get("/:id", isLoggedIn, (req, res) => {
+  const { id } = req.params;
+  User.findById(id)
+  .then((userFromDb) => {
+    /*
+    si current user no existe en req.session, rediriguir a login
+    else tendremos session hacer render
+    */
+    if(!req.session.hasOwnProperty('currentUser')) {
+      res.redirect('/auth/login')
+    }else{res.render("auth/user", { userFromDb })}
+    
+      
+    
+  })
+})
+
+router.get('/:id/edit', isLoggedIn, fileUploader.single('user-image'), (req, res) => {
+  const { id } = req.params;
+  User.findById(id)
+  .then((userFromDb) => {
+    res.render('auth/user-edit', {userFromDb})
+  })
+  
+})
+
+router.post('/:id/edit', isLoggedIn, fileUploader.single('user-image'), (req, res, next) => {
+  const { id } = req.params;
+  const { nom, username, email, password } = req.body;
+  const updatedUser = {
+    nom: nom,
+    username: username,
+    email: email,
+    password: password,
+  }
+
+
+  // Check that nom, username, email, and password are provided
+  if (nom === "" || username === "" || email === "" || password === "") {
+    res.status(400).render("auth/signup", {
+      errorMessage:
+        "All fields are mandatory. Please provide your username, email and password.",
+    });
+
+    return;
+  }
+  
+
+  // if (password.length < 6) {
+  //   res.status(400).render("auth/signup", {
+  //     errorMessage: "Your password needs to be at least 6 characters long.",
+  //   });
+
+  //   return;
+  // }
+
+  //   ! This regular expression checks password for special characters and minimum length
+  /*
+  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  if (!regex.test(password)) {
+    res
+      .status(400)
+      .render("auth/signup", {
+        errorMessage: "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter."
+    });
+    return;
+  }
+  */
+
+    // check que el nou user tingi un file d'on agafar la imatge
+    if (req.hasOwnProperty('file') ) {
+      updatedUser.userImage = req.file.path;
+    }
+    User.findByIdAndUpdate(id, updatedUser, { new: true })
+
+  // Create a new user - start by hashing the password
+  // bcrypt
+  //   .genSalt(saltRounds)
+  //   .then((salt) => bcrypt.hash(password, salt))
+  //   .then((hashedPassword) => {
+  //     user.password = hashedPassword
+  //     // Create a user and save it in the database
+  //     return User.create(user);
+  //   })
+    .then((updatedUserFromDb) => {
+      res.redirect(`/auth/${id}`);
+    })
+    .catch((error) => {
+      if (error instanceof mongoose.Error.ValidationError) {
+        res.status(500).render("auth/user-edit", { errorMessage: error.message });
+      } else if (error.code === 11000) {
+        res.status(500).render("auth/user-edit", {
+          errorMessage:
+            "Username and email need to be unique. Provide a valid username or email.",
+        });
+      } else {
+        next(error);
+      }
+    });
+})
 
 
 module.exports = router;

@@ -1,25 +1,25 @@
-<h2>Edita l'usuari {{usuariFromDB.nom}}</h2>
-<form action="/auth/{{usuariFromDB.id}}/edit" method="POST" enctype="multipart/form-data" class="row g-3">
+<h2>Edita l'usuari {{userFromDb.nom}}</h2>
+<form action="/auth/{{userFromDb.id}}/edit" method="POST" enctype="multipart/form-data" class="row g-3">
     <div class="col-md-3">
         <label class="form-label"> <b>Nom</b>
-            <textarea class="form-control" type="text" name="nom" rows="1" cols="30" placeholder="El teu nom" >{{usuariFromDB.nom}}</textarea>
+            <textarea class="form-control" type="text" name="nom" rows="1" cols="30" placeholder="El teu nom" >{{userFromDb.nom}}</textarea>
       </label>     
     </div>
-    <div class="col-md-3">
+    {{!-- <div class="col-md-3">
         <label class="form-label"> <b>Username</b>
             <input class="form-control" aria-describedby="inputGroupPrepend3" type="text" name="username" placeholder="El teu username" value="{{usuariFromDB.username}}"/>
         </label>
-    </div>
+    </div> --}}
     <div class="col-md-3">
         <label class="form-label"> <b>Email</b>
-            <input class="form-control" type="email" name="email" placeholder="El teu email" value="{{usuariFromDB.email}}"/>
+            <input class="form-control" type="email" name="email" placeholder="El teu email" value="{{userFromDb.email}}"/>
       </label>
     </div>
-    <div class="col-md-3">
+    {{!-- <div class="col-md-3">
         <label class="form-label"> <b>Password</b>
-            <input class="form-control" type="password" name="password" placeholder="El teu password" value="{{usuariFromDB.password}}"/>
+            <input class="form-control" type="password" name="password" placeholder="El teu password"/>
       </label>
-    </div>
+    </div> --}}
     <div class="col-md-3">
         <label class="form-label"> <b>Foto de perfil</b>
             <input class="form-control" style="background-color: white; color:#ee2229" type="file" name="user-image">
@@ -32,7 +32,7 @@
 
         {{#unless imageUrl}}
             <p>Imatge actual:</p>
-            <img src="{{usuariFromDB.userImage}}" class="img-fluid" alt="">
+            <img src="{{userFromDb.userImage}}" class="img-fluid" alt="">
         {{/unless}}
     </div>
     <div class="col-12">
@@ -41,4 +41,4 @@
     </div>
 </form>
 <hr>
-<a class="btn btn-sm" style="background-color: white; color:#ee2229" href='/auth/{{usuariFromDB._id}}'>Back</a>
+<a class="btn btn-sm" style="background-color: white; color:#ee2229" href='/auth/{{userFromDb._id}}'>Back</a>

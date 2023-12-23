@@ -5,7 +5,7 @@
     
         {{#each userFromDB.actuacions}}
             <div class="card" style="width: 18rem;">
-                <img src="{{this.photo}}" class="card-img-top" alt="foto de la actuacio">
+                <a href="/actuacions/{{this._id}}" title="Entra"><img src="{{this.photo}}" class="card-img-top" alt="foto de la actuacio"></a>
                 <div class="card-body">
                     <h5 class="card-title">{{this.diada}}</h5>
                     
@@ -13,8 +13,8 @@
                     <button type="submit">Hi vaig assistir</button>
                     </form>
                     <br> --}}
-                    <a href="/actuacions/{{this._id}}" class="btn" style="background-color: #ee2229; color:white">Entra a l'actuació</a>
-                    <br><br>
+                    {{!-- <a href="/actuacions/{{this._id}}" class="btn" style="background-color: #ee2229; color:white">Entra a l'actuació</a>
+                    <br><br> --}}
                     <a href="/actuacions/{{this._id}}/edit" class="btn" style="background-color: #ee2229; color:white">Edita l'actuació</a>
                     <br><br>
                     <form action="/actuacions/{{this.id}}/delete" method="POST">

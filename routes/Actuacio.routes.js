@@ -163,8 +163,8 @@ router.post('/:id/edit', isLoggedIn, fileUploader.single('actuacio-image'), (req
     updatedActuacio.author = _id
   
     Actuacio.findByIdAndUpdate(id, updatedActuacio, { new: true })
-        .then( (updatedActuacioFromDB) => {
-            // res.send(updatedActuacioFromDB)
+        .then( (updatedActuacioFromDb) => {
+            // res.send(updatedActuacioFromDb)
             res.redirect(`/actuacions/${id}`)
         });
 });
