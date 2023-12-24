@@ -1,6 +1,13 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.bg-red {
+  background-color: #ee2229;
+}
+.bg-white {
+  background-color: white;
 }
 .bg-mocador{
   background-image: url('/images/textura-mocador.jpg');
@@ -9,14 +16,34 @@ body {
   width: 100%;
   height: 100%;
 }
-
+.padd-left {
+  padding-left: 2vh;
+}
+.padd-right {
+  padding-right: 2vh;
+}
+.padd-bottom {
+  padding-bottom: 1vh;
+}
+.padd-top {
+  padding-top: 1vh;
+}
 a {
   color: #00b7ff;
 }
 
 h1 {
-  color: 15px;
-  text-align: center;
+  color: white;
+  text-align: left;
+  font-size: 6rem;
+  width: 50%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  padding: 2vh 0 2vh 3vh;
+}
+h2 {
+  color: white;
+  font-size: 3rem;
+  padding: 2vh 0 0 3vh;
 }
 nav {
 color: white;
@@ -33,6 +60,7 @@ gap: 2rem;
 nav a {
   color: white;
   padding-right: 1rem;
+  text-decoration: none;
 }
 .flex {
   display: flex;
@@ -74,11 +102,33 @@ nav a {
 nav p {
   margin-left: 0.3rem;
   margin-top: 1rem;
+  
+}
+.with50 {
+  width: 50%;
+}
+.big {
+  width: 20rem;
+  height: auto;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.p-home {
+  width: 75%;
+  font-size: 1.5rem;
+  text-align: left;
+  padding-left: 3vh;
+  text-align: center;
+}
+#dosdevuit {
+  width: 60%;
+  height: auto;
 }
 .actuacions {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  padding: 0 2vh 3vh 2vh;
 }
 
 footer {

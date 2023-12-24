@@ -1,24 +1,27 @@
-<div class=" container-fluid" style="background-color: #ee2229">
-    <div>
-        <h1>ACTUACIONS CASTELLERES</h1>
-    </div>
-    <div class="flex-center">
-    <p>
-        <b>Aquí podeu crear les vostres actuacions i veuri i escriure comentaris a les actuacions de les altres colles</b>
-    </p>
-    </div>
-    <div class="flex-center">
-    {{#if user}}
-        {{!-- <a href="/actuacions/nova-actuacio" class="btn" style="background-image: url('/images/faixa-enrotllada.png')">Crea una actuació</a> --}}
-        <a href="/actuacions/nova-actuacio" class="btn" style="background-color: #ee2229; color:white">Crea una actuació</a>
-    {{/if}}
-    </div>
+<div class="flex container-fluid bg-red">
+    <div class="with50">
+        
+            <h1>ACTUACIONS CASTELLERES</h1>
+        
+        <p class="p-home">
+            <b>Aquí podeu tenir les vostres actuacions catalogades amb el nom de la diada, la data, el lloc, els castells que hi heu fet i seleccionar una imatge de la diada.
+                <br>Podreu veure i comentar les actuacions de les altres colles!</b>
+        </p>
+        
+            <img class="img40" src="/images/faixa.png" alt="">
+        
+    </div>    
     <div class="flex">
-        <div>
-            <img src="/images/faixa.png" alt="">
-        </div>
-        <div>
-            <img src="/images/2de8net.png" alt="">
-        </div>
-    </div>
+        
+        {{#if user}}
+            {{!-- <a href="/actuacions/nova-actuacio" class="btn" style="background-image: url('/images/faixa-enrotllada.png')">Crea una actuació</a> --}}
+            <a href="/actuacions/nova-actuacio" class="btn btn-lg big" style="background-color: white; color:#ee2229">Crea una actuació</a>
+        {{/if}}
+        
+        
+        <img id="dosdevuit" src="/images/2de8net.png">
+        
+    </div>        
+            
+        
 </div>     
