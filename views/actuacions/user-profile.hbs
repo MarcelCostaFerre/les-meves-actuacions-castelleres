@@ -1,28 +1,30 @@
-<h2>Actuacions dels {{userFromDB.nom}} <img class="img-20px" src="{{userFromDB.userImage}}" alt="foto de perfil"></h2>
+<div class="bg-red">
+    <h2>Actuacions dels {{userFromDB.nom}} <img class="img-20px" src="{{userFromDB.userImage}}" alt="foto de perfil"></h2>
 
-<div class="actuacions">
-    {{#if user}}
-    
-        {{#each userFromDB.actuacions}}
-            <div class="card" style="width: 18rem;">
-                <a href="/actuacions/{{this._id}}" title="Entra"><img src="{{this.photo}}" class="card-img-top" alt="foto de la actuacio"></a>
-                <div class="card-body">
-                    <h5 class="card-title">{{this.diada}}</h5>
-                    
-                    {{!-- <form action="/actuacions/{{this.id}}/assistir" method="POST"></form>
-                    <button type="submit">Hi vaig assistir</button>
-                    </form>
-                    <br> --}}
-                    {{!-- <a href="/actuacions/{{this._id}}" class="btn" style="background-color: #ee2229; color:white">Entra a l'actuació</a>
-                    <br><br> --}}
-                    <a href="/actuacions/{{this._id}}/edit" class="btn" style="background-color: #ee2229; color:white">Edita l'actuació</a>
-                    <br><br>
-                    <form action="/actuacions/{{this.id}}/delete" method="POST">
-                    <button type="submit" class="btn" style="background-color: #ee2229; color:white">Esborra l'actuacio</button>
-                    </form>
-                </div>
-            </div>    
-        {{/each}}
-    
-    {{/if}}
+    <div class="actuacions">
+        {{#if user}}
+        
+            {{#each userFromDB.actuacions}}
+                <div class="card" style="width: 18rem;">
+                    <a href="/actuacions/{{this._id}}" title="Entra"><img src="{{this.photo}}" class="card-img-top" alt="foto de la actuacio"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.diada}}</h5>
+                        
+                        {{!-- <form action="/actuacions/{{this.id}}/assistir" method="POST"></form>
+                        <button type="submit">Hi vaig assistir</button>
+                        </form>
+                        <br> --}}
+                        {{!-- <a href="/actuacions/{{this._id}}" class="btn" style="background-color: #ee2229; color:white">Entra a l'actuació</a>
+                        <br><br> --}}
+                        <a href="/actuacions/{{this._id}}/edit" class="btn" style="background-color: #ee2229; color:white">Edita l'actuació</a>
+                        <br><br>
+                        <form action="/actuacions/{{this.id}}/delete" method="POST">
+                        <button type="submit" class="btn" style="background-color: #ee2229; color:white">Esborra l'actuacio</button>
+                        </form>
+                    </div>
+                </div>    
+            {{/each}}
+        
+        {{/if}}
+    </div>
 </div>

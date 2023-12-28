@@ -1,63 +1,65 @@
-<h2>Crea una nova actuació</h2>
+<div id="form" class="bg-red">
+  <h2>Crea una nova actuació</h2>
 
-<form action="/actuacions/nova-actuacio" method="POST" enctype="multipart/form-data" class="row g-3">
-  <div class="col-md-6">
-    <label class="form-label"> <b>Diada</b>
-      <textarea class="form-control" type="text" name="diada" rows="1" cols="70" placeholder="Nom de l'actuació">Pati del Mnactec</textarea>
-    </label>
-  </div>
-  <div class="col-md-6">
-    <label class="form-label"> <b>Adreça</b>
-      <textarea class="form-control" type="text" name="address" rows="1" cols="70" placeholder="Lloc de l'actuació">Mnactec, Terrassa</textarea>
-    </label>
-  </div>
-  <div class="col-md-6">
-    <label class="form-label"> <b>Data</b>
-      <input class="form-control" type="date" name="date" value="2023-12-15">
-    </label>
-  </div>
-  <div class="col-md-6">
-    <label class="form-label"> <b>Castells</b>
-      <textarea class="form-control" type="text" name="castells" rows="1" cols="70" placeholder="Castells fets a l'actuació">Pde5, 3de7p, 4de7, 5de7, Pde5, Pde4, Pde4</textarea>
-    </label>
-  </div>
-  <div class="col-md-6">
-    <label class="form-label"> <b>Foto</b>
-      <input class="form-control" style="background-color: white; color:#ee2229" type="file" name="actuacio-image">
-    </label>
-  </div>
-  <div class="col-md-6">
-    <label class="form-label"> <b>Altres colles</b>
-      <textarea class="form-control" type="text" name="colles" rows="1" cols="70" placeholder="Colles amb les que has actuat"></textarea>
-    </label>
-  </div>
+  <form action="/actuacions/nova-actuacio" method="POST" enctype="multipart/form-data" class="row g-3">
+    <div class="col-md-6">
+      <label class="form-label"> <b>Diada</b>
+        <textarea class="form-control" type="text" name="diada" rows="1" cols="70" placeholder="Nom de l'actuació">Pati del Mnactec</textarea>
+      </label>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label"> <b>Adreça</b>
+        <textarea class="form-control" type="text" name="address" rows="1" cols="70" placeholder="Lloc de l'actuació">Mnactec, Terrassa</textarea>
+      </label>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label"> <b>Data</b>
+        <input class="form-control" type="date" name="date" value="2023-12-15">
+      </label>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label"> <b>Castells</b>
+        <textarea class="form-control" type="text" name="castells" rows="1" cols="70" placeholder="Castells fets a l'actuació">Pde5, 3de7p, 4de7, 5de7, Pde5, Pde4, Pde4</textarea>
+      </label>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label"> <b>Foto</b>
+        <input class="form-control" style="background-color: white; color:#ee2229" type="file" name="actuacio-image">
+      </label>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label"> <b>Altres colles</b>
+        <textarea class="form-control" type="text" name="colles" rows="1" cols="70" placeholder="Colles amb les que has actuat"></textarea>
+      </label>
+    </div>
 
 
 
 
-    {{!-- <label> Foto:
-      <input type="image" src="/images/castell-tipus.jpg" alt="foto-castell">
-    </label> --}}
+      {{!-- <label> Foto:
+        <input type="image" src="/images/castell-tipus.jpg" alt="foto-castell">
+      </label> --}}
 
-   
-
-    {{!-- <label> User:
-      <input type="text" name="user" value="{{}}"/>
-    </label> --}}
-
-    {{!-- <br>
-
-    <label for="user-select"> Creada per:
-      <select name="user">
-        <option disable selected value=""></option>
-        {{#each dbUsers}}
-          <option value="{{this._id}}"> {{this.username}} </option>
-        {{/each}}
-      </select>
-    </label> --}}
     
-  <div class="col-12">
-    <button class="btn" style="background-color: #ee2229; color:white" type="submit">Crea una actuació</button>
-    <button class="btn" style="background-color: #ee2229; color:white" type="reset" value="Reset">Reset</button>
-  </div>
-</form>
+
+      {{!-- <label> User:
+        <input type="text" name="user" value="{{}}"/>
+      </label> --}}
+
+      {{!-- <br>
+
+      <label for="user-select"> Creada per:
+        <select name="user">
+          <option disable selected value=""></option>
+          {{#each dbUsers}}
+            <option value="{{this._id}}"> {{this.username}} </option>
+          {{/each}}
+        </select>
+      </label> --}}
+      
+    <div class="col-12">
+      <button class="btn" style="background-color: white; color:#ee2229" type="submit">Crea una actuació</button>
+      <button class="btn" style="background-color: white; color:#ee2229" type="reset" value="Reset">Reset</button>
+    </div>
+  </form>
+</div>  

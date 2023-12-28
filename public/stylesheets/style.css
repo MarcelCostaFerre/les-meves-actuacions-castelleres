@@ -25,6 +25,10 @@ body {
 .padd-bottom {
   padding-bottom: 1vh;
 }
+.padd-bottom3 {
+  padding-bottom: 3vh;
+}
+
 .padd-top {
   padding-top: 1vh;
 }
@@ -124,13 +128,27 @@ nav p {
   width: 60%;
   height: auto;
 }
+#form {
+  padding: 0 0 3vh 2vh;
+}
+#login-form {
+  padding: 0 0 3vh 2vh;
+}
 .actuacions {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   padding: 0 2vh 3vh 2vh;
 }
-
+#dades-actuacio {
+  padding: 2vh;
+  margin: 0 2vh 0 0;
+  font-size: 1.5rem;
+  
+}
+#comentaris {
+  width: 32%;
+}
 footer {
   background-image: url('/images/mocador.jpg');;
   width: 100%;
