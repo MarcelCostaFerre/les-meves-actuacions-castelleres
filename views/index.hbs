@@ -1,7 +1,7 @@
 <div class="flex container-fluid bg-red">
     <div class="with50">
-        
-            <h1>ACTUACIONS CASTELLERES</h1>
+        <a href="/actuacions"><h1>ACTUACIONS CASTELLERES</h1></a>
+            
         
         <p class="p-home">
             <b>Aquí podeu tenir les vostres actuacions catalogades amb el nom de la diada, la data, el lloc, els castells que hi heu fet i seleccionar una imatge de la diada.
@@ -12,13 +12,25 @@
         
     </div>    
     <div class="flex">
+        <div>
+            {{#if user}}
+                {{!-- <a href="/actuacions/nova-actuacio" class="btn" style="background-image: url('/images/faixa-enrotllada.png')">Crea una actuació</a> --}}
+                <a href="/actuacions/nova-actuacio" class="btn btn-lg big margin-bottom3" style="background-color: white; color:#ee2229">Crea una actuació</a>
+                <a href="/actuacions" class="btn btn-lg big" style="background-color: white; color:#ee2229">Veure actuacions</a>
+            {{/if}}
+        </div>
+        <div>
+            {{#unless user}}
+                <a href="/actuacions" class="btn btn-lg big" style="background-color: white; color:#ee2229">Veure actuacions</a>
+            {{/unless}}
         
-        {{#if user}}
-            {{!-- <a href="/actuacions/nova-actuacio" class="btn" style="background-image: url('/images/faixa-enrotllada.png')">Crea una actuació</a> --}}
-            <a href="/actuacions/nova-actuacio" class="btn btn-lg big" style="background-color: white; color:#ee2229">Crea una actuació</a>
-        {{/if}}
-        
-        
+            {{!-- <div class="flex-gap">
+                {{#unless user}}
+                    <a class="btn btn-lg" style="background-color: white; color:#ee2229" href="/auth/signup">Registra't</a>
+                    <a class="btn btn-lg" style="background-color: white; color:#ee2229" href="/auth/login">Identifica't</a>
+                {{/unless}}
+            </div> --}}
+        </div>
         <img id="dosdevuit" src="/images/2de8net.png">
         
     </div>        

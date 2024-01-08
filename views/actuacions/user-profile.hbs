@@ -1,12 +1,14 @@
 <div class="bg-red">
-    <h2>Actuacions dels {{userFromDB.nom}} <img class="img-20px" src="{{userFromDB.userImage}}" alt="foto de perfil"></h2>
+    <h2 id="h2-actuacions"><b>Actuacions dels {{userFromDB.nom}}</b></h2>
 
     <div class="actuacions">
         {{#if user}}
         
             {{#each userFromDB.actuacions}}
                 <div class="card" style="width: 18rem;">
-                    <a href="/actuacions/{{this._id}}" title="Entra"><img src="{{this.photo}}" class="card-img-top" alt="foto de la actuacio"></a>
+                    <div id="img-actuacio-container">
+                        <a href="/actuacions/{{this._id}}" title="Entra"><img src="{{this.photo}}" class="card-img-top" alt="foto de la actuacio"></a>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">{{this.diada}}</h5>
                         

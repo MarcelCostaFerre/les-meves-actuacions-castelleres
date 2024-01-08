@@ -1,13 +1,15 @@
 <div class="bg-red">
-  <h2>ACTUACIONS</h2>
+  <h2 id="h2-actuacions"><b>Actuacions</b></h2>
   <div class="actuacions">
     
       {{#each dbActuacions}}
         <div class="card" style="width: 18rem;">
-          <a href="/actuacions/{{this._id}}" title="Entra"><img src="{{this.photo}}" class="card-img-top" alt="foto de la actuacio"></a>
+          <div id="img-actuacio-container">
+            <a href="/actuacions/{{this._id}}" title="Entra"><img src="{{this.photo}}" class="card-img-top" alt="foto de la actuacio"></a>
+          </div>  
           <div class="card-body">
             <h5 class="card-title">{{this.diada}}</h5> 
-            <p class="card-text">creada per <img class="img-20px" src="{{this.author.userImage}}" alt="foto de perfil">  {{this.author.nom}}</p>
+            <p class="card-text">creada per <b>{{this.author.nom}}</b></p>
             <a href="/actuacions/{{this._id}}" class="btn" style="background-color: #ee2229; color:white">Entra a l'actuació</a>
             {{!-- <br> <br> --}}
             {{!-- <form action="/actuacions/{{this.id}}/delete" method="POST">

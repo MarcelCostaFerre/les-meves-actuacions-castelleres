@@ -16,19 +16,17 @@
     <header>
       <nav> 
         <div class="flex">
+          <a  href="/">Home</a>
           {{#if user}}
             <img class="img-20px" src="{{user.userImage}}" alt="foto de perfil">
             <p>Hola <a href="/auth/{{user._id}}">{{user.username}}!</a></p>
           {{/if}}
-          {{#unless user}}
-            <a href="/auth/signup">Registra't</a>
-            <a href="/auth/login">Identifica't</a>
-          {{/unless}}
+          
         </div>
-        <div class="flex-gap">
-            <a  href="/actuacions">Actuacions</a>
+        <div class="flex-gap">    
           {{#if user}}
             <a href="/actuacions/nova-actuacio">Crea una actuació</a>
+            <a  href="/actuacions">Actuacions</a>
             <a href='/actuacions/user/{{user._id}}'>Les meves actuacions</a>
             <a href='/auth/{{user._id}}'>El meu perfil</a>
           {{/if}}
@@ -36,11 +34,16 @@
         <div class="flex-gap">
           {{!-- <ul> --}}
             {{!-- <li> --}}
-                <a  href="/">Home</a>
+                {{#if user}}
                 
-                <form action="/auth/logout" method="POST">
-                  <button class="btn btn-sm" style="background-color: white; color:#ee2229">Desconnecta't</button>
-                </form>
+                  <form action="/auth/logout" method="POST">
+                    <button class="btn btn-sm" style="background-color: white; color:#ee2229">Desconnecta't</button>
+                  </form>
+                {{/if}} 
+                {{#unless user}}
+                  <a href="/auth/signup">Registra't</a>
+                  <a class="btn btn-sm" style="background-color: white; color:#ee2229" href="/auth/login">Identifica't</a>
+                {{/unless}}
             {{!-- </li> --}}
           {{!-- </ul> --}}
         </div>  

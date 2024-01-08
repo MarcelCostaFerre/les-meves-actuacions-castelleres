@@ -32,8 +32,11 @@ body {
 .padd-top {
   padding-top: 1vh;
 }
+.margin-bottom3 {
+  margin-bottom: 3vh;
+}
 a {
-  color: #00b7ff;
+  text-decoration: none;
 }
 
 h1 {
@@ -45,6 +48,10 @@ h1 {
   padding: 2vh 0 2vh 3vh;
 }
 h2 {
+  color: white;
+  font-size: 3rem;
+}
+#h2-actuacions {
   color: white;
   font-size: 3rem;
   padding: 2vh 0 0 3vh;
@@ -149,8 +156,13 @@ nav p {
 #comentaris {
   width: 32%;
 }
+#img-actuacio-container {
+  overflow: hidden;
+  height: 400px;
+}
 footer {
   background-image: url('/images/mocador.jpg');;
   width: 100%;
   height: 10vh;
 }
+
