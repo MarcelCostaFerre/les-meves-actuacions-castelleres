@@ -14,8 +14,6 @@ router.get('/', (req, res ) => {
         select: 'nom userImage -_id'
     })
     .then((dbActuacions) => {
-        // console.log(dbActuacions)
-        // res.send(dbActuacions)
        res.render('actuacions/actuacions', { dbActuacions }) 
     })
     
@@ -44,10 +42,7 @@ router.post('/nova-actuacio', fileUploader.single('actuacio-image'), (req, res, 
         actuacio.photo = req.file.path;
     }
     actuacio.author = _id
-    // console.log({ diada, address, date, castells, colles, photo, author: _id })
-    // return
     Actuacio.create(actuacio)
-    // Actuacio.create({ diada, address, date, castells, colles, photo, author: _id })
     .then( novaActuacio => {
         return User.findByIdAndUpdate(_id, { $push: { actuacions: novaActuacio._id } })
       })
@@ -77,17 +72,8 @@ router.get('/:id', (req, res) => {
           select: 'username -_id',
         }
     })
-    // .then((actuacioFromDB) => {
-    //     const canEdit = ''
-    //     if(actuacioFromDB.author.username === req.session.currentUser.username){
-    //         return canEdit
-    //     }
-    //     res.render('actuacions/detall-actuacio', {actuacioFromDB, canEdit})
-    // })
     .then( (actuacioFromDB) => {
-        // res.send(actuacioFromDB)
-      
-        if(!req.session.currentUser){
+       if(!req.session.currentUser){
             res.render('actuacions/detall-actuacio', { actuacioFromDB })
         
         }else{
@@ -108,8 +94,6 @@ router.get('/user/:id', isLoggedIn, (req, res) => {
         if(userFromDB.username === req.session.currentUser.username){
             res.render('actuacions/user-profile', {userFromDB});
             }else{res.redirect('/actuacions')}
-        // res.send(userFromDB)
-        
     })
 })
 
@@ -121,22 +105,6 @@ router.get('/:id/edit', isLoggedIn, (req, res) => {
         path:'author',
         select: 'username -_id'
     })
-    // .populate({
-    //     path: 'comments',
-    //     populate: {
-    //       path: 'author',
-    //       select: 'username -_id',
-    //     }
-    //   })
-
-    // .then((actuacioFromDB) => {
-    //     console.log(actuacioFromDB.author.username)
-    //     console.log(req.session.currentUser.username)
-    //     if(actuacioFromDB.author._id !== req.session.currentUser._id){
-    //         res.redirect('/actuacions')
-    //     }
-    // })
-
     .then((actuacioFromDB) => {
         if(actuacioFromDB.author.username === req.session.currentUser.username){
             res.render('actuacions/edit', {actuacioFromDB})
@@ -164,7 +132,6 @@ router.post('/:id/edit', isLoggedIn, fileUploader.single('actuacio-image'), (req
   
     Actuacio.findByIdAndUpdate(id, updatedActuacio, { new: true })
         .then( (updatedActuacioFromDb) => {
-            // res.send(updatedActuacioFromDb)
             res.redirect(`/actuacions/${id}`)
         });
 });
@@ -188,22 +155,15 @@ router.post('/:id/delete', isLoggedIn, (req, res, next) => {
         select: 'username -_id'
     })
     .then((actuacioFromDB) => {
-        // console.log(actuacioFromDB.author.username)
         if(actuacioFromDB.author.username === req.session.currentUser.username){
             Actuacio.findByIdAndDelete(id)
             .then( () => {
                 res.redirect('/actuacions')
-                // res.send(`Actuacio ${id} has been deleted`);
             }).catch(err => next(err)) 
         }else{res.redirect('/actuacions')}
     })
    
     
 });
-
-// router.post('/:id/assistir', (req, res) => {
-//     const { id } = req.params;
-
-// });
 
 module.exports = router;
