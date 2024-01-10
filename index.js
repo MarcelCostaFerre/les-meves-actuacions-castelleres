@@ -47,13 +47,13 @@ app.use("/actuacions", commentRoutes);
 require("./error-handling")(app);
 
 // Browser Sync
-const browserSync = require("browser-sync");
+// const browserSync = require("browser-sync");
 
 // Start the server
-browserSync({
-  proxy: "http://localhost:3000", // proxying the app domain
-  open: false, 
-  files: ['public', 'views'] // watching the following folders
-});
+// browserSync({
+//   proxy: "http://localhost:3000", // proxying the app domain
+//   open: false, 
+//   files: ['public', 'views'] // watching the following folders
+// });
 
 module.exports = app;
